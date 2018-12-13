@@ -1,0 +1,54 @@
+<h4>Expression:</h4> 
+<p>Angularjs version:<span>{{ home.version }}</span> </p> 
+<h4>ngBind directive:</h4>
+<p>Angularjs version latest: <span ng-bind="{{ home.lt_version }}"></span></p> 
+<h4>ngInit directive: </h4>
+<div>
+<b>Invoice:</b>
+<div>
+    quantity: <input type="number" min="0" ng-model="qty">
+</div>
+<div>
+    costs: <input type="number" min="0" ng-model="cost">
+</div>
+<br>
+Total: {{ qty * cost | currency }}
+<button ng-click="home.pay();">Pay</button>
+</div>
+<h4>Bind Value using function:</h4>
+<div>
+    <b>Invoice:</b>
+  <div>
+    Quantity: <input type="number" min="0" ng-model="home.qty" required >
+  </div>
+  <div>
+    Costs: <input type="number" min="0" ng-model="home.cost" required >
+    <select ng-model="home.inCurr">
+      <option ng-repeat="c in home.currencies">{{c}}</option>
+    </select>
+  </div>
+  Total: 
+  <br>
+  <p ng-repeat="c in home.currencies">{{home.total(c) | currency:c }}</p>
+  <button ng-click="home.pay();">Pay</button>
+</div>
+
+<h4>Bind value using function through controller and service</h4>
+
+<div>
+  <b>Invoice:</b>
+<div>
+  Quantity: <input type="number" min="0" ng-model="home.qty" required >
+</div>
+<div>
+  Costs: <input type="number" min="0" ng-model="home.cost" required >
+  <select ng-model="home.inCurr">
+    <option ng-repeat="c in home.currencies">{{c}}</option>
+  </select>
+</div>
+Total: 
+<br>
+<p ng-repeat="c in home.currencies">{{home.convert(c) | currency:c }}</p>
+<button ng-click="home.pay();">Pay</button>
+</div>
+
